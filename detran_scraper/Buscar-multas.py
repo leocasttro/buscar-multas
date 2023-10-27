@@ -507,19 +507,18 @@ input("Clique 'enter' para prosseguir")
 
 #laço para cada uma das linhas em questão
 for index,row  in df.iterrows():
-    print(df)
     
-    placa = row[ColPlaca]
+    placa = row.iloc[1]
     placa = str(placa).replace("-","")
     placa = str(placa.replace(" ",""))
     
-    renavan = str(row[ColRenavam])
+    renavan = str(row.iloc[2])
     try:
         renavan = renavan.split(".")[0]
     except:
         pass
     letras = int(len(renavan))
-    ctrl = int(row[ColControle])
+    ctrl = int(row.iloc[0])
     
     if letras == 10:
         renavan = "0"+renavan
@@ -534,7 +533,7 @@ for index,row  in df.iterrows():
     ctrl = str(ctrl) 
     ctrl_in = str(ctrl_in)
     
-    if len(placa)==7 and ctrl==ctrl_in:
+    if len(placa)==7:
         carregar()
         #Partindo de um ponto padrão"
         navegador.get("https://portalservicos.senatran.serpro.gov.br/#/home")
